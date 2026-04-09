@@ -1,6 +1,8 @@
 # C3 bindings for 42's mlx library
 Basic C3 bindings to `minilibx`
 
+# What is C3?
+https://c3-lang.org/getting-started/
 
 # How to use
 You need to compile libmlx.a from source and add it to `./linux-x64/` (see `manifest.json`) or equivalent depending on your system.
