@@ -20,7 +20,7 @@ extern fn int clear_window(MlxPtr, WinPtr) @cname("mlx_clear_window");
 extern fn int pixel_put(MlxPtr, WinPtr, int x, int y, int color) @cname("mlx_pixel_put");
 
 extern fn ImgPtr new_image(MlxPtr, int width, int height) @cname("mlx_new_image");
-extern fn ZString get_data_addr(ImgPtr, int* bits_per_pixel, int* size_line, int* endian) @cname("mlx_get_data_addr");
+extern fn CChar* get_data_addr(ImgPtr, int* bits_per_pixel, int* size_line, int* endian) @cname("mlx_get_data_addr");
 extern fn int put_image_to_window(MlxPtr, WinPtr, ImgPtr, int x, int y) @cname("mlx_put_image_to_window");
 extern fn int get_color_value(MlxPtr, int color) @cname("mlx_get_color_value");
 
@@ -36,7 +36,7 @@ extern fn int loop_end(MlxPtr) @cname("mlx_loop_end");
 
 extern fn int string_put(MlxPtr, WinPtr, int x, int y, int color, ZString string) @cname("mlx_string_put");
 extern fn void set_font(MlxPtr, WinPtr, ZString name) @cname("mlx_set_font");
-extern fn ImgPtr xpm_to_image(MlxPtr, ZString* xpm_data, int* width, int* height) @cname("mlx_xpm_to_image");
+extern fn ImgPtr xpm_to_image(MlxPtr, CChar** xpm_data, int* width, int* height) @cname("mlx_xpm_to_image");
 extern fn ImgPtr xpm_file_to_image(MlxPtr, ZString filename, int* width, int* height) @cname("mlx_xpm_file_to_image");
 extern fn int destroy_window(MlxPtr, WinPtr) @cname("mlx_destroy_window");
 extern fn int destroy_image(MlxPtr, ImgPtr) @cname("mlx_destroy_image");
