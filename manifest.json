@@ -1,0 +1,11 @@
+{
+  "provides" : "mlx",
+  "sources" : [ "**" ],
+  "targets" : {
+    "linux-x64" : {
+      "link-args" : [],
+      "dependencies" : [],
+      "linked-libraries" : ["mlx", "X11", "Xext"]
+    }
+  }
+}

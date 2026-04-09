@@ -1,0 +1,53 @@
+module mlx;
+
+typedef MlxPtr = void*;
+typedef WinPtr = void*;
+typedef ImgPtr = void*;
+
+alias CtxPtr = void*;
+
+alias MlxMouseHookFunc = fn int(int button, int x, int y, CtxPtr ctx);
+alias MlxMouseMotionHookFunc = fn int(int x, int y, CtxPtr ctx);
+alias MlxKeyHookFunc = fn int(int key, CtxPtr ctx);
+alias MlxExposeHookFunc = fn int(CtxPtr ctx);
+alias MlxGenericHookFunc = fn int(CtxPtr ctx);
+alias MlxLoopHookFunc = fn int(CtxPtr ctx);
+
+extern fn MlxPtr init() @cname("mlx_init");
+extern fn WinPtr new_window(MlxPtr, int size_x, int size_y, ZString title) @cname("mlx_new_window");
+
+extern fn int clear_window(MlxPtr, WinPtr) @cname("mlx_clear_window");
+extern fn int pixel_put(MlxPtr, WinPtr, int x, int y, int color) @cname("mlx_pixel_put");
+
+extern fn ImgPtr new_image(MlxPtr, int width, int height) @cname("mlx_new_image");
+extern fn ZString get_data_addr(ImgPtr, int* bits_per_pixel, int* size_line, int* endian) @cname("mlx_get_data_addr");
+extern fn int put_image_to_window(MlxPtr, WinPtr, ImgPtr, int x, int y) @cname("mlx_put_image_to_window");
+extern fn int get_color_value(MlxPtr, int color) @cname("mlx_get_color_value");
+
+
+extern fn int mouse_hook(WinPtr, MlxMouseHookFunc, CtxPtr) @cname("mlx_mouse_hook");
+extern fn int key_hook(WinPtr, MlxKeyHookFunc, CtxPtr) @cname("mlx_key_hook");
+extern fn int expose_hook(WinPtr, MlxExposeHookFunc, CtxPtr) @cname("mlx_expose_hook");
+
+extern fn int loop_hook(MlxPtr, MlxLoopHookFunc, CtxPtr) @cname("mlx_loop_hook");
+extern fn int loop(MlxPtr) @cname("mlx_loop");
+extern fn int loop_end(MlxPtr) @cname("mlx_loop_end");
+
+
+extern fn int string_put(MlxPtr, WinPtr, int x, int y, int color, ZString string) @cname("mlx_string_put");
+extern fn void set_font(MlxPtr, WinPtr, ZString name) @cname("mlx_set_font");
+extern fn ImgPtr xpm_to_image(MlxPtr, ZString* xpm_data, int* width, int* height) @cname("mlx_xpm_to_image");
+extern fn ImgPtr xpm_file_to_image(MlxPtr, ZString filename, int* width, int* height) @cname("mlx_xpm_file_to_image");
+extern fn int destroy_window(MlxPtr, WinPtr) @cname("mlx_destroy_window");
+extern fn int destroy_image(MlxPtr, ImgPtr) @cname("mlx_destroy_image");
+extern fn int destroy_display(MlxPtr) @cname("mlx_destroy_display");
+
+extern fn int hook(WinPtr, int x_event, int x_mask, MlxGenericHookFunc, CtxPtr) @cname("mlx_hook");
+extern fn int do_key_autorepeatoff(MlxPtr) @cname("mlx_do_key_autorepeatoff");
+extern fn int do_key_autorepeaton(MlxPtr) @cname("mlx_do_key_autorepeaton");
+extern fn int do_sync(MlxPtr) @cname("mlx_do_sync");
+extern fn int mouse_get_pos(MlxPtr, WinPtr, int* x, int* y) @cname("mlx_mouse_get_pos");
+extern fn int mouse_move(MlxPtr, WinPtr, int x, int y) @cname("mlx_mouse_move");
+extern fn int mouse_hide(MlxPtr, WinPtr) @cname("mlx_mouse_hide");
+extern fn int mouse_show(MlxPtr, WinPtr) @cname("mlx_mouse_show");
+extern fn int get_screen_size(MlxPtr, int* sizex, int* sizey) @cname("mlx_get_screen_size");
